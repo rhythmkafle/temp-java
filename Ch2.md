@@ -1,3 +1,5 @@
+# Ch2
+
 ## Writing Comments
 
 Comments are non-executable lines in code that improves readability and explains the program’s logic. Java supports 3 types of comments:
@@ -436,8 +438,226 @@ Jumping statements are control statements that transfer execution control from o
     }
     
     Output:
-    
+    0
+    1
+    2
+    3
+    4
+    5
     ```
     
 2. continue
-3. returns
+    - skips the current iteration and continues with the next step
+    
+    ```java
+    import java.io.*;
+    
+    class GFG {
+        public static void main(String[] args)
+        {
+            int n = 10;
+            for (int i = 0; i < n; i++) {
+                if (i == 6)
+                    continue;
+                System.out.println(i);
+            }
+        }
+    }
+    
+    Output:
+    0
+    1
+    2
+    3
+    4
+    5
+    7  // -> 6 is skipped, because of the use of keyword 'continue'
+    8
+    9
+    ```
+    
+3. return
+    - The return keyword is used to return a value from a method
+    
+    ```java
+    public class Main {
+      static int myMethod(int x) {
+        return 5 + x; // returns 5 + x i.e. 5 + 3 in this code
+      }
+    
+      public static void main(String[] args) {
+        System.out.println(myMethod(3));  // calls the method, and prints the result
+      }
+    }
+    // Outputs 8 because it will return 5 + 3 
+    ```
+    
+
+---
+
+## Working with Big Numbers
+
+Normal integer types have limits. For very large/small numbers:
+
+- Use **BigInteger** (for integers)
+- Use **BigDecimal** (for decimal numbers with high precision).
+
+Eg for BigInteger:
+
+```java
+import java.math.BigInteger;
+BigInteger big = new BigInteger("12345678901234567890");
+```
+
+Without using BigInteger, we cannot use such a large value.
+
+---
+
+## Arrays
+
+Arrays are used to store multiple values in a single variable, instead of declaring separate variables for each value.
+
+To declare an array, define the variable type with square brackets:
+
+```java
+String[] cars;
+```
+
+To insert values to it, you can place the values in a comma-separated list, inside curly braces:
+
+```java
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+```
+
+To create an array of integers, you could write:
+
+```java
+int[] myNum = {10, 20, 30, 40};
+```
+
+### Accessing elements of an array:
+
+```java
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+System.out.println(cars[0]); 
+// Outputs Volvo
+```
+
+### Change an array element:
+
+```java
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+cars[0] = "Opel";
+System.out.println(cars[0]);
+// Now outputs Opel instead of Volvo, i.e. Volvo has been overwritten
+```
+
+### Finding length of an array:
+
+```java
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+System.out.println(cars.length);
+// Outputs 4
+```
+
+### One Dimensional Array
+
+- It is a linear sequence of collection of elements.
+- All arrays mentioned till now are One Dimensional Array.
+
+Eg:
+
+```java
+int[] numbers = {10, 20, 30};
+```
+
+### Multi Dimensional Array
+
+- An array of arrays, representing a grid or table of data.
+- Multidimensional arrays are useful when you want to store data as a tabular form, like a table with rows and columns.
+
+```java
+int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };
+```
+
+### Accessing Elements on a Multidimensional array
+
+```java
+int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };
+System.out.println(myNumbers[1][2]); // Outputs 7
+
+// Explanation 
+// When using mynumbers[1][2], [1] is accessing the array with index 1, i.e. {5,6,7}
+// and [2] is accessing the 2nd indexed element of array indexed 1 i.e. 7.
+
+// Remember, in array, indexing starts from 0.
+```
+
+### Looping through an Array
+
+We can loop through an array using the for loop. Or the for-each loop.
+
+Eg using for loop:
+
+```java
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+for (int i = 0; i < cars.length; i++) {
+  System.out.println(cars[i]);
+}
+
+Output:
+Volvo
+BMW
+Ford
+Mazda
+```
+
+Eg using for-each loop:
+
+```java
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+for (String i : cars) {
+  System.out.println(i);
+}
+
+// Explanation, in (String i : cars), each element inside the array 'cars' will
+// be stored in the variable 'String i' one by one. Once all the elements are 
+// printed, it will stop the for loop automatically.
+```
+
+### Loop through a Multi-Dimensional Array:
+
+- We need to use nested loop (loop inside a loop) to print all values in multi-dimensional array
+
+Eg using for loop:
+
+```java
+int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };
+for (int i = 0; i < myNumbers.length; ++i) {
+  for (int j = 0; j < myNumbers[i].length; ++j) {
+    System.out.println(myNumbers[i][j]);
+  }
+}
+
+Output:
+1
+2
+3
+4
+5
+6
+7
+```
+
+Eg using for-each loop:
+
+```java
+int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };
+for (int[] row : myNumbers) {
+  for (int i : row) {
+    System.out.println(i);
+  }
+}
+```
+
+---
